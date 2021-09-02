@@ -18,6 +18,7 @@
 		C5B1BE1826E0C28400579339 /* ConstraintsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1626E0C28400579339 /* ConstraintsExtension.swift */; };
 		C5B1BE1926E0C28400579339 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */; };
 		C5B1BE1B26E0C2A500579339 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */; };
+		C5B1BE1F26E0F3FB00579339 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1E26E0F3FB00579339 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		C5B1BE1626E0C28400579339 /* ConstraintsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintsExtension.swift; sourceTree = "<group>"; };
 		C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C5B1BE1E26E0F3FB00579339 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C5B1BE1326E0C19700579339 /* HomeCoordinator.swift */,
+				C5B1BE1E26E0F3FB00579339 /* HomeView.swift */,
 				C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */,
 			);
 			path = HomeVC;
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B1BE1F26E0F3FB00579339 /* HomeView.swift in Sources */,
 				C5B1BE1826E0C28400579339 /* ConstraintsExtension.swift in Sources */,
 				C5B1BE0F26E0C10800579339 /* Coordinator.swift in Sources */,
 				C5B1BE1126E0C14B00579339 /* RootCoordinator.swift in Sources */,
