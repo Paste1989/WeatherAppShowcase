@@ -1,0 +1,2 @@
+# WeatherAppShowcase
+MVVM, Coordinator pattern
