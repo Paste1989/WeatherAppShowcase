@@ -30,5 +30,8 @@ class HomeViewController: UIViewController {
         homeView.onSearchButtonTapped = { [weak self] in
             self?.viewModel.onSearchTapped?()
         }
+        homeView.onSettingsButtonTapped = { [weak self] in
+            self?.viewModel.onSettingsTapped?()
+        }
     }
 }

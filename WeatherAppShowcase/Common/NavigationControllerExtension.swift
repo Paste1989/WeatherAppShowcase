@@ -23,4 +23,20 @@ extension UINavigationController {
         backButton.tintColor = .black
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
     }
+    
+    //
+    func setupNavigationBar1() {
+        DispatchQueue.main.async {
+            self.navigationController?.navigationBar.isHidden = false
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = true
+            
+            let backButton = UIBarButtonItem()
+            backButton.title = ""
+            backButton.image = UIImage(named: "back")
+            backButton.tintColor = .black
+            self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        }
+    }
 }
