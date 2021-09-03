@@ -26,6 +26,22 @@ class SettingsViewController: UIViewController {
     }
     
     private func addCallbacks() {
+        settingsView.onCelsiusButtonTapped = { [weak self] tag in
+            self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        settingsView.onFahrenheitButtonTapped = { [weak self] tag in
+            self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        settingsView.onHumidityButtonTapped = { [weak self] tag in
+            self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        settingsView.onPressureButtonTapped = { [weak self] tag in
+            self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        settingsView.onWindButtonTapped = { [weak self] tag in
+            self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        
         
     }
 }

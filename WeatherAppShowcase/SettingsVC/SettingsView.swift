@@ -30,11 +30,11 @@ class SettingsView: UIView {
     private lazy var pressureButton = UIButton(type: .system)
     private lazy var windButton = UIButton(type: .system)
     
-    var onCelsiusButtonTapped: (()->Void)?
-    var onFahrenheitButtonTapped: (()->Void)?
-    var onHumidityButtonTapped: (()->Void)?
-    var onPressureButtonTapped: (()->Void)?
-    var onWindButtonTapped: (()->Void)?
+    var onCelsiusButtonTapped: ((Int)->Void)?
+    var onFahrenheitButtonTapped: ((Int)->Void)?
+    var onHumidityButtonTapped: ((Int)->Void)?
+    var onPressureButtonTapped: ((Int)->Void)?
+    var onWindButtonTapped: ((Int)->Void)?
     
     
     override init(frame: CGRect) {
@@ -54,10 +54,12 @@ class SettingsView: UIView {
         
         celsiusButton.setImage(UIImage(named: "check"), for: .normal)
         celsiusButton.addTarget(self, action: #selector(celsiusButtonTapped), for: .touchUpInside)
+        celsiusButton.tag = 0
         addSubview(celsiusButton)
         
-        fahrenheitButton.setImage(UIImage(named: "check"), for: .normal)
+        fahrenheitButton.setImage(UIImage(named: ""), for: .normal)
         fahrenheitButton.addTarget(self, action: #selector(fahrenheitButtonTapped), for: .touchUpInside)
+        fahrenheitButton.tag = 1
         addSubview(fahrenheitButton)
         
         celsiusView.backgroundColor = .white
@@ -123,14 +125,17 @@ class SettingsView: UIView {
         
         humidtyButton.setImage(UIImage(named: "check"), for: .normal)
         humidtyButton.addTarget(self, action: #selector(humidityButtonTapped), for: .touchUpInside)
+        humidtyButton.tag = 2
         addSubview(humidtyButton)
         
         pressureButton.setImage(UIImage(named: "check"), for: .normal)
         pressureButton.addTarget(self, action: #selector(pressureButtonTapped), for: .touchUpInside)
+        pressureButton.tag = 3
         addSubview(pressureButton)
         
         windButton.setImage(UIImage(named: "check"), for: .normal)
         windButton.addTarget(self, action: #selector(windButtonTapped), for: .touchUpInside)
+        windButton.tag = 4
         addSubview(windButton)
         
     }
@@ -242,28 +247,55 @@ class SettingsView: UIView {
         
     }
     
+    func checkButtonTapped(buttonTag: Int) {
+        if buttonTag == 0 {
+            setupButtonImage(celsiusButton)
+        }
+        else if buttonTag == 1 {
+           setupButtonImage(fahrenheitButton)
+        }
+        else if buttonTag == 2 {
+           setupButtonImage(humidtyButton)
+        }
+        else if buttonTag == 3 {
+           setupButtonImage(pressureButton)
+        }
+        else if buttonTag == 4 {
+           setupButtonImage(windButton)
+        }
+    }
+    
+    private func setupButtonImage(_ button: UIButton) {
+        if button.image(for: .normal) == UIImage(named: "") {
+            button.setImage(UIImage(named: "check"), for: .normal)
+        }
+        else {
+            button.setImage(UIImage(named: ""), for: .normal)
+        }
+    }
+    
     @objc func celsiusButtonTapped() {
         print("celsius tapped")
-        onCelsiusButtonTapped?()
+        onCelsiusButtonTapped?(celsiusButton.tag)
     }
     
     @objc func fahrenheitButtonTapped() {
         print("fahrenheit tapped")
-        onFahrenheitButtonTapped?()
+        onFahrenheitButtonTapped?(fahrenheitButton.tag)
     }
     
     @objc func humidityButtonTapped() {
         print("humidity tapped")
-        onHumidityButtonTapped?()
+        onHumidityButtonTapped?(humidtyButton.tag)
     }
     
     @objc func pressureButtonTapped() {
         print("pressure tapped")
-        onPressureButtonTapped?()
+        onPressureButtonTapped?(pressureButton.tag)
     }
     
     @objc func windButtonTapped() {
         print("wind tapped")
-        onWindButtonTapped?()
+        onWindButtonTapped?(windButton.tag)
     }
 }

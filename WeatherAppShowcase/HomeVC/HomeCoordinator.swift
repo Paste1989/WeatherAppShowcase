@@ -22,15 +22,15 @@ class HomeCoordinator: Coordinator {
     }
     
     private func createHomeVC() -> UIViewController {
-        let vc = SettingsViewController()
-        vc.viewModel = SettingsViewModel()
+        let vc = HomeViewController()
+        vc.viewModel = HomeViewModel()
         
-//        vc.viewModel.onSearchTapped = { [weak self] in
-//            _ = self?.createSearchVC()
-//        }
-//        vc.viewModel.onSettingsTapped = { [weak self] in
-//            _ = self?.createSettingsVC()
-//        }
+        vc.viewModel.onSearchTapped = { [weak self] in
+            _ = self?.createSearchVC()
+        }
+        vc.viewModel.onSettingsTapped = { [weak self] in
+            _ = self?.createSettingsVC()
+        }
         
         return vc
     }
@@ -46,7 +46,7 @@ class HomeCoordinator: Coordinator {
     private func createSettingsVC() -> UIViewController {
         let vc = SettingsViewController()
         vc.viewModel = SettingsViewModel()
-        
+    
         navigationController.pushViewController(vc, animated: true)
         return vc
     }
