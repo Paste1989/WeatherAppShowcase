@@ -19,6 +19,10 @@
 		C5B1BE1926E0C28400579339 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */; };
 		C5B1BE1B26E0C2A500579339 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */; };
 		C5B1BE1F26E0F3FB00579339 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE1E26E0F3FB00579339 /* HomeView.swift */; };
+		C5B1BE2226E1F78400579339 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2126E1F78400579339 /* SearchView.swift */; };
+		C5B1BE2426E1F83B00579339 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2326E1F83B00579339 /* SearchViewController.swift */; };
+		C5B1BE2826E1FC7800579339 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2626E1FC7800579339 /* SearchTableViewCell.swift */; };
+		C5B1BE2926E1FC7800579339 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B1BE2726E1FC7800579339 /* SearchTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C5B1BE1E26E0F3FB00579339 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C5B1BE2126E1F78400579339 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C5B1BE2326E1F83B00579339 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C5B1BE2626E1FC7800579339 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C5B1BE2726E1FC7800579339 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,7 @@
 				C5B1BDFA26E0C0CA00579339 /* SceneDelegate.swift */,
 				C5B1BE0C26E0C0D300579339 /* UI */,
 				C5B1BE1226E0C18200579339 /* HomeVC */,
+				C5B1BE2026E1F76A00579339 /* SearchVC */,
 				C5B1BE1526E0C27000579339 /* Common */,
 				C5B1BDFE26E0C0CA00579339 /* Main.storyboard */,
 				C5B1BE0126E0C0CC00579339 /* Assets.xcassets */,
@@ -115,6 +124,25 @@
 				C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C5B1BE2026E1F76A00579339 /* SearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				C5B1BE2526E1FC4A00579339 /* cell */,
+				C5B1BE2126E1F78400579339 /* SearchView.swift */,
+				C5B1BE2326E1F83B00579339 /* SearchViewController.swift */,
+			);
+			path = SearchVC;
+			sourceTree = "<group>";
+		};
+		C5B1BE2526E1FC4A00579339 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				C5B1BE2626E1FC7800579339 /* SearchTableViewCell.swift */,
+				C5B1BE2726E1FC7800579339 /* SearchTableViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B1BE0526E0C0CC00579339 /* LaunchScreen.storyboard in Resources */,
+				C5B1BE2926E1FC7800579339 /* SearchTableViewCell.xib in Resources */,
 				C5B1BE0226E0C0CC00579339 /* Assets.xcassets in Resources */,
 				C5B1BE0026E0C0CA00579339 /* Main.storyboard in Resources */,
 			);
@@ -187,6 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B1BE2226E1F78400579339 /* SearchView.swift in Sources */,
+				C5B1BE2426E1F83B00579339 /* SearchViewController.swift in Sources */,
 				C5B1BE1F26E0F3FB00579339 /* HomeView.swift in Sources */,
 				C5B1BE1826E0C28400579339 /* ConstraintsExtension.swift in Sources */,
 				C5B1BE0F26E0C10800579339 /* Coordinator.swift in Sources */,
@@ -194,6 +225,7 @@
 				C5B1BE1B26E0C2A500579339 /* HomeViewController.swift in Sources */,
 				C5B1BDF926E0C0CA00579339 /* AppDelegate.swift in Sources */,
 				C5B1BDFB26E0C0CA00579339 /* SceneDelegate.swift in Sources */,
+				C5B1BE2826E1FC7800579339 /* SearchTableViewCell.swift in Sources */,
 				C5B1BE1926E0C28400579339 /* UIViewControllerExtension.swift in Sources */,
 				C5B1BE1426E0C19700579339 /* HomeCoordinator.swift in Sources */,
 			);

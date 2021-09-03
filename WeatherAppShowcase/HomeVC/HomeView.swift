@@ -318,10 +318,12 @@ class HomeView: UIView {
     
     @objc func searchButtonTapped() {
         print("search tapped")
+        onSearchButtonTapped?()
     }
     
     @objc func settingsButtonTapped() {
         print("search tapped")
+        onSettingsButtonTapped?()
     }
     
 }

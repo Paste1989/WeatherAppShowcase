@@ -17,7 +17,7 @@ class RootCoordinator: Coordinator {
     
     
     private func setHomeVCasRoot() -> UIViewController {
-        let vc = HomeViewController()
+        let vc = SearchViewController()
         vc.showAsRoot()
         
         return vc
