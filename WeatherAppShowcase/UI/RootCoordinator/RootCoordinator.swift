@@ -9,18 +9,22 @@ import Foundation
 import UIKit
 
 class RootCoordinator: Coordinator {
+    let navigationController = UINavigationController()
+    var childCoordinator: Coordinator?
+    
     func start() -> UIViewController {
         let vc = setHomeVCasRoot()
         
         return vc
     }
     
-    
     private func setHomeVCasRoot() -> UIViewController {
-        let vc = SearchViewController()
-        vc.showAsRoot()
+        let homeCoordinator = HomeCoordinator(navController: navigationController)
+        childCoordinator = homeCoordinator
+        let rootVC = homeCoordinator.start()
+        rootVC.showAsRoot()
         
-        return vc
+        return rootVC
     }
     
     

@@ -22,9 +22,32 @@ class HomeCoordinator: Coordinator {
     }
     
     private func createHomeVC() -> UIViewController {
-        let homeCoordinator = HomeCoordinator(navController: navigationController)
-        let vc = homeCoordinator.start()
+        let vc = HomeViewController()
+        vc.viewModel = HomeViewModel()
         
+        vc.viewModel.onSearchTapped = { [weak self] in
+            _ = self?.createSearchVC()
+        }
+        vc.viewModel.onSettingsTapped = { [weak self] in
+            _ = self?.createSettingsVC()
+        }
+        
+        return vc
+    }
+    
+    private func createSearchVC() -> UIViewController {
+        let vc = SearchViewController()
+        vc.viewModel = SearchViewModel()
+        
+        navigationController.pushViewController(vc, animated: true)
+        return vc
+    }
+    
+    private func createSettingsVC() -> UIViewController {
+        let vc = SearchViewController()
+        vc.viewModel = SearchViewModel()
+        
+        navigationController.pushViewController(vc, animated: true)
         return vc
     }
 }

@@ -23,6 +23,9 @@
 		C5B1BE2426E1F83B00579339 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2326E1F83B00579339 /* SearchViewController.swift */; };
 		C5B1BE2826E1FC7800579339 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2626E1FC7800579339 /* SearchTableViewCell.swift */; };
 		C5B1BE2926E1FC7800579339 /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5B1BE2726E1FC7800579339 /* SearchTableViewCell.xib */; };
+		C5B1BE2B26E2070000579339 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2A26E2070000579339 /* HomeViewModel.swift */; };
+		C5B1BE2D26E20C6F00579339 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2C26E20C6F00579339 /* SearchViewModel.swift */; };
+		C5B1BE2F26E2120900579339 /* NavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B1BE2E26E2120900579339 /* NavigationControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		C5B1BE2326E1F83B00579339 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C5B1BE2626E1FC7800579339 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		C5B1BE2726E1FC7800579339 /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		C5B1BE2A26E2070000579339 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C5B1BE2C26E20C6F00579339 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C5B1BE2E26E2120900579339 /* NavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				C5B1BE1326E0C19700579339 /* HomeCoordinator.swift */,
+				C5B1BE2A26E2070000579339 /* HomeViewModel.swift */,
 				C5B1BE1E26E0F3FB00579339 /* HomeView.swift */,
 				C5B1BE1A26E0C2A500579339 /* HomeViewController.swift */,
 			);
@@ -122,6 +129,7 @@
 			children = (
 				C5B1BE1626E0C28400579339 /* ConstraintsExtension.swift */,
 				C5B1BE1726E0C28400579339 /* UIViewControllerExtension.swift */,
+				C5B1BE2E26E2120900579339 /* NavigationControllerExtension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				C5B1BE2526E1FC4A00579339 /* cell */,
+				C5B1BE2C26E20C6F00579339 /* SearchViewModel.swift */,
 				C5B1BE2126E1F78400579339 /* SearchView.swift */,
 				C5B1BE2326E1F83B00579339 /* SearchViewController.swift */,
 			);
@@ -220,10 +229,13 @@
 				C5B1BE2426E1F83B00579339 /* SearchViewController.swift in Sources */,
 				C5B1BE1F26E0F3FB00579339 /* HomeView.swift in Sources */,
 				C5B1BE1826E0C28400579339 /* ConstraintsExtension.swift in Sources */,
+				C5B1BE2F26E2120900579339 /* NavigationControllerExtension.swift in Sources */,
 				C5B1BE0F26E0C10800579339 /* Coordinator.swift in Sources */,
 				C5B1BE1126E0C14B00579339 /* RootCoordinator.swift in Sources */,
 				C5B1BE1B26E0C2A500579339 /* HomeViewController.swift in Sources */,
 				C5B1BDF926E0C0CA00579339 /* AppDelegate.swift in Sources */,
+				C5B1BE2D26E20C6F00579339 /* SearchViewModel.swift in Sources */,
+				C5B1BE2B26E2070000579339 /* HomeViewModel.swift in Sources */,
 				C5B1BDFB26E0C0CA00579339 /* SceneDelegate.swift in Sources */,
 				C5B1BE2826E1FC7800579339 /* SearchTableViewCell.swift in Sources */,
 				C5B1BE1926E0C28400579339 /* UIViewControllerExtension.swift in Sources */,

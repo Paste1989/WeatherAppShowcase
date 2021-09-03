@@ -16,6 +16,8 @@ class SearchView: UIView {
     
     var onSearchButtonTapped: (()->Void)?
     
+    var locations: [String] = ["London", "Berlin", "Zagreb"]
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         locationTableView.delegate = self
@@ -44,11 +46,11 @@ class SearchView: UIView {
         searchTextField.tintColor = .black
         searchTextField.placeholder = "Search"
         searchTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-        backgroundImageView.addSubview(searchTextField)
+        addSubview(searchTextField)
         
         searchButton.setImage(UIImage(named: "search"), for: .normal)
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        backgroundImageView.addSubview(searchButton)
+        addSubview(searchButton)
         
         locationTableView.backgroundColor = .clear
         locationTableView.separatorColor = .clear
@@ -88,13 +90,13 @@ class SearchView: UIView {
 
 extension SearchView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
         
-        cell.setupView(name: "London")
+        cell.setupView(name: locations[indexPath.row])
          
         return cell
     }

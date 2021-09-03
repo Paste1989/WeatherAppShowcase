@@ -62,11 +62,11 @@ class HomeView: UIView {
         
         searchButton.setImage(UIImage(named: "search"), for: .normal)
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
-        topView.addSubview(searchButton)
+        addSubview(searchButton)
         
         settingsButton.setImage(UIImage(named: "settings"), for: .normal)
         settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
-        topView.addSubview(settingsButton)
+        addSubview(settingsButton)
         
         weatherImageView.image = UIImage(systemName: "sun.max")?.withRenderingMode(.alwaysTemplate)
         weatherImageView.tintColor = UIColor.black
@@ -322,7 +322,7 @@ class HomeView: UIView {
     }
     
     @objc func settingsButtonTapped() {
-        print("search tapped")
+        print("settings tapped")
         onSettingsButtonTapped?()
     }
     
