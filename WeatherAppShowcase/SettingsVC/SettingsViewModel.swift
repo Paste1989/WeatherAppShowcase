@@ -15,7 +15,7 @@ class SettingsViewModel {
     }
     
     var onViewWillApper: ((Settings)->Void)?
-    var onViewWillDisappear: ((Settings)->Void)?
+//    var onViewWillDisappear: ((Settings)->Void)?
     
     func saveSettings(with settings: Settings) {
         settingsPersistanceService.saveSettings(settings)
@@ -24,11 +24,5 @@ class SettingsViewModel {
     func getSettings() -> Settings {
         return settingsPersistanceService.getSettings()
     }
-    
-//    var onCelsiusTapped: ((Bool)->Void)?
-//    var onFahrenheitTapped: ((Bool)->Void)?
-//    var onHumidityTapped: ((Bool)->Void)?
-//    var onPressureTapped: ((Bool)->Void)?
-//    var onWindTapped: ((Bool)->Void)?
     
 }

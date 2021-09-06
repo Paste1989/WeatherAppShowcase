@@ -27,13 +27,6 @@ class SettingsViewController: UIViewController {
         settingsView.setupButtonView(celsiusON: getSettings.isCelsiusON, fahrenheitON: getSettings.isFahreheitON, humidityON: getSettings.isHumidityON, pressureON: getSettings.isPressureON, windON: getSettings.isWindON)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        let settings = settingsView.prepareForStoreSetttings()
-        let saveSettings = Settings(isCelsiusON: settings.isCelsiusON, isFahreheitON: settings.isFahreheitON, isHumidityON: settings.isHumidityON, isPressureON: settings.isPressureON, isWindON: settings.isWindON)
-        viewModel.saveSettings(with: saveSettings)
-    }
-    
     private func addCallbacks() {
         settingsView.onCelsiusButtonTapped = { [weak self] tag in
             self?.settingsView.checkButtonTapped(buttonTag: tag)
@@ -49,6 +42,14 @@ class SettingsViewController: UIViewController {
         }
         settingsView.onWindButtonTapped = { [weak self] tag in
             self?.settingsView.checkButtonTapped(buttonTag: tag)
+        }
+        
+        settingsView.onChangeSettingSave = { [weak self] in
+            let settings = self?.settingsView.prepareForStoreSetttings()
+            if let sett = settings {
+                let saveSettings = Settings(isCelsiusON: sett.isCelsiusON, isFahreheitON: sett.isFahreheitON, isHumidityON: sett.isHumidityON, isPressureON: sett.isPressureON, isWindON: sett.isWindON)
+                self?.viewModel.saveSettings(with: saveSettings)
+            }
         }
         
     }

@@ -35,6 +35,7 @@ class SettingsView: UIView {
     var onHumidityButtonTapped: ((Int)->Void)?
     var onPressureButtonTapped: ((Int)->Void)?
     var onWindButtonTapped: ((Int)->Void)?
+    var onChangeSettingSave: (()->Void)?
     
     
     override init(frame: CGRect) {
@@ -250,7 +251,8 @@ class SettingsView: UIView {
     func setupButtonView(celsiusON: Bool, fahrenheitON: Bool, humidityON: Bool, pressureON: Bool, windON: Bool) {
         if celsiusON {
             celsiusButton.setImage(UIImage(named: "check"), for: .normal)
-        }else {
+        }
+        else {
             celsiusButton.setImage(UIImage(named: ""), for: .normal)
         }
         if fahrenheitON {
@@ -287,23 +289,35 @@ class SettingsView: UIView {
     
     func checkButtonTapped(buttonTag: Int) {
         if buttonTag == 0 {
-            setupButtonImage(celsiusButton)
+            toggleButtons(celsiusButton)
         }
         else if buttonTag == 1 {
-           setupButtonImage(fahrenheitButton)
+            toggleButtons(fahrenheitButton)
         }
         else if buttonTag == 2 {
-           setupButtonImage(humidtyButton)
+            buttonTapHandle(humidtyButton)
         }
         else if buttonTag == 3 {
-           setupButtonImage(pressureButton)
+            buttonTapHandle(pressureButton)
         }
         else if buttonTag == 4 {
-           setupButtonImage(windButton)
+            buttonTapHandle(windButton)
+        }
+        onChangeSettingSave?()
+    }
+    
+    private func toggleButtons(_ button: UIButton) {
+        if celsiusButton.image(for: .normal) == UIImage(named: "") {
+            celsiusButton.setImage(UIImage(named: "check"), for: .normal)
+            fahrenheitButton.setImage(UIImage(named: ""), for: .normal)
+        }
+        else {
+            celsiusButton.setImage(UIImage(named: ""), for: .normal)
+            fahrenheitButton.setImage(UIImage(named: "check"), for: .normal)
         }
     }
     
-    private func setupButtonImage(_ button: UIButton) {
+    private func buttonTapHandle(_ button: UIButton) {
         if button.image(for: .normal) == UIImage(named: "") {
             button.setImage(UIImage(named: "check"), for: .normal)
         }
@@ -311,6 +325,7 @@ class SettingsView: UIView {
             button.setImage(UIImage(named: ""), for: .normal)
         }
     }
+    
     
     @objc func celsiusButtonTapped() {
         print("celsius tapped")
