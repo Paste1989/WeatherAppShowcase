@@ -24,6 +24,8 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        let settings = viewModel.getSettings()
+        homeView.showDetails(humidity: !settings.isHumidityON, presssure: !settings.isPressureON, wind: !settings.isWindON)
     }
     
     private func addCallbacks() {

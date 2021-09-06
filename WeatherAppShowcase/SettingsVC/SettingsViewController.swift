@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    private lazy var settingsView = SettingsView()
+    lazy var settingsView = SettingsView()
     var viewModel: SettingsViewModel!
     
     override func loadView() {
@@ -23,6 +23,15 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        let getSettings = ServiceFactory.settingsPersistenceService.getSettings()
+        settingsView.setupButtonView(celsiusON: getSettings.isCelsiusON, fahrenheitON: getSettings.isFahreheitON, humidityON: getSettings.isHumidityON, pressureON: getSettings.isPressureON, windON: getSettings.isWindON)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        let settings = settingsView.prepareForStoreSetttings()
+        let saveSettings = Settings(isCelsiusON: settings.isCelsiusON, isFahreheitON: settings.isFahreheitON, isHumidityON: settings.isHumidityON, isPressureON: settings.isPressureON, isWindON: settings.isWindON)
+        viewModel.saveSettings(with: saveSettings)
     }
     
     private func addCallbacks() {
@@ -41,7 +50,6 @@ class SettingsViewController: UIViewController {
         settingsView.onWindButtonTapped = { [weak self] tag in
             self?.settingsView.checkButtonTapped(buttonTag: tag)
         }
-        
         
     }
 }

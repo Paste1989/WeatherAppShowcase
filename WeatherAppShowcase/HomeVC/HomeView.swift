@@ -316,6 +316,15 @@ class HomeView: UIView {
         ])
     }
     
+    func showDetails(humidity: Bool, presssure: Bool, wind: Bool) {
+        humidityLabel.isHidden = humidity
+        humidityDescriptionLabel.isHidden = humidity
+        pressureLabel.isHidden = presssure
+        pressureDescriptionLabel.isHidden = presssure
+        windLabel.isHidden = wind
+        windDescriptionLabel.isHidden = wind
+    }
+    
     @objc func searchButtonTapped() {
         print("search tapped")
         onSearchButtonTapped?()

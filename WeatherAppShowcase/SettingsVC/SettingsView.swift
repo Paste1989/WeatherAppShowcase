@@ -247,6 +247,44 @@ class SettingsView: UIView {
         
     }
     
+    func setupButtonView(celsiusON: Bool, fahrenheitON: Bool, humidityON: Bool, pressureON: Bool, windON: Bool) {
+        if celsiusON {
+            celsiusButton.setImage(UIImage(named: "check"), for: .normal)
+        }else {
+            celsiusButton.setImage(UIImage(named: ""), for: .normal)
+        }
+        if fahrenheitON {
+            fahrenheitButton.setImage(UIImage(named: "check"), for: .normal)
+        }
+        else {
+            fahrenheitButton.setImage(UIImage(named: ""), for: .normal)
+        }
+        if humidityON {
+            humidtyButton.setImage(UIImage(named: "check"), for: .normal)
+        }
+        else {
+            humidtyButton.setImage(UIImage(named: ""), for: .normal)
+        }
+        if pressureON {
+            pressureButton.setImage(UIImage(named: "check"), for: .normal)
+        }
+        else {
+            pressureButton.setImage(UIImage(named: ""), for: .normal)
+        }
+        if windON {
+            windButton.setImage(UIImage(named: "check"), for: .normal)
+        }
+        else {
+            windButton.setImage(UIImage(named: ""), for: .normal)
+        }
+    }
+    
+    func prepareForStoreSetttings() -> Settings {
+        let checkImage = UIImage(named: "check")
+        let settings = Settings(isCelsiusON: celsiusButton.image(for: .normal) == checkImage, isFahreheitON: fahrenheitButton.image(for: .normal) == checkImage, isHumidityON: humidtyButton.image(for: .normal) == checkImage, isPressureON: pressureButton.image(for: .normal) == checkImage, isWindON: windButton.image(for: .normal) == checkImage)
+        return settings
+    }
+    
     func checkButtonTapped(buttonTag: Int) {
         if buttonTag == 0 {
             setupButtonImage(celsiusButton)
