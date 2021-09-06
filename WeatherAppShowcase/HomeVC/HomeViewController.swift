@@ -8,9 +8,10 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
     private lazy var homeView = HomeView()
     var viewModel: HomeViewModel!
+    
+    let wmanager = DataService()
     
     override func loadView() {
         view = homeView
@@ -18,6 +19,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        wmanager.delegate = self
         addCallbacks()
     }
     
@@ -26,6 +28,9 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         let settings = viewModel.getSettings()
         homeView.showDetails(humidity: !settings.isHumidityON, presssure: !settings.isPressureON, wind: !settings.isWindON)
+        
+        
+        wmanager.fetchData(with: "Osijek")
     }
     
     private func addCallbacks() {
@@ -36,4 +41,16 @@ class HomeViewController: UIViewController {
             self?.viewModel.onSettingsTapped?()
         }
     }
+}
+
+extension HomeViewController: DataServiceProtocol {
+    func didUpdateData(_ weatherManager: DataService, weather: WeatherModel) {
+        homeView.updateWeatherData(weather: weather)
+    }
+    
+    func didFailWithError(error: Error) {
+        print("Error: \(error)")
+    }
+    
+    
 }

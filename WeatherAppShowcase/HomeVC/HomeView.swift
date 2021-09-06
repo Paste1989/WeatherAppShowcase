@@ -316,6 +316,19 @@ class HomeView: UIView {
         ])
     }
     
+    func updateWeatherData(weather: WeatherModel) {
+        DispatchQueue.main.async {
+            self.weatherImageView.image = UIImage(systemName: weather.conditionName)
+            self.locationLabel.text = weather.cityName
+            self.currentTemperatureLabel.text = weather.temperatureString
+            self.minTempLabel.text = String(weather.minTemp)
+            self.maxTempLabel.text = String(weather.maxTemp)
+            self.humidityLabel.text = "\(weather.humidity) %"
+            self.pressureLabel.text = "\(weather.pressure) hpa"
+            self.windLabel.text = "\(weather.wind) mph"
+        }
+    }
+    
     func showDetails(humidity: Bool, presssure: Bool, wind: Bool) {
         humidityLabel.isHidden = humidity
         humidityDescriptionLabel.isHidden = humidity
