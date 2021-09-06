@@ -93,8 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				C56C750026E4C6F3000D32CD /* ServiceFactory.swift */,
-				C56C74FB26E4C408000D32CD /* SettingsPersistenceService.swift */,
 				C56C750426E60E58000D32CD /* DataService.swift */,
+				C56C74FB26E4C408000D32CD /* SettingsPersistenceService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";

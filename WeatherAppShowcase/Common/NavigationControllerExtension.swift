@@ -40,3 +40,18 @@ extension UINavigationController {
         }
     }
 }
+
+extension UINavigationBar {
+    public func isVisible(_ visible: Bool) {
+        if visible {
+            self.setBackgroundImage(nil, for: .default)
+            self.shadowImage = nil
+            self.isTranslucent = false
+        }
+        else {
+            self.setBackgroundImage(UIImage(), for: .default)
+            self.shadowImage = UIImage()
+            self.isTranslucent = true
+        }
+    }
+}

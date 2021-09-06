@@ -22,15 +22,15 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.isVisible(false)
     }
     
     private func setupNavigationBar() {
         DispatchQueue.main.async {
-            self.navigationController?.navigationBar.isHidden = false
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.isTranslucent = true
+//            self.navigationController?.navigationBar.isHidden = false
+//            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//            self.navigationController?.navigationBar.shadowImage = UIImage()
+//            self.navigationController?.navigationBar.isTranslucent = true
             
             let backButton = UIBarButtonItem()
             backButton.title = ""
