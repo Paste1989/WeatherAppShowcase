@@ -23,7 +23,7 @@ class HomeCoordinator: Coordinator {
     
     private func createHomeVC() -> UIViewController {
         let vc = HomeViewController()
-        vc.viewModel = HomeViewModel(settingsPersistanceService: ServiceFactory.settingsPersistenceService)
+        vc.viewModel = HomeViewModel(dataService: ServiceFactory.dataService, settingsPersistanceService: ServiceFactory.settingsPersistenceService)
         
         vc.viewModel.onSearchTapped = { [weak self] in
             _ = self?.createSearchVC()
@@ -37,7 +37,7 @@ class HomeCoordinator: Coordinator {
     
     private func createSearchVC() -> UIViewController {
         let vc = SearchViewController()
-        vc.viewModel = SearchViewModel()
+        vc.viewModel = SearchViewModel(dataService: ServiceFactory.dataService, settingsPersistanceService: ServiceFactory.settingsPersistenceService)
         
         navigationController.pushViewController(vc, animated: true)
         return vc

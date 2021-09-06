@@ -11,4 +11,8 @@ final class ServiceFactory {
     static var settingsPersistenceService: SettingsPersistenceService = {
         return SettingsPersistenceService()
     }()
+    
+    static var dataService: DataService = {
+        return DataService()
+    }()
 }

@@ -9,31 +9,17 @@ import Foundation
 import UIKit
 
 class HomeViewModel {
+    let dataService: DataService
     let settingsPersistanceService: SettingsRepositoryProtocol
-    init(settingsPersistanceService: SettingsRepositoryProtocol) {
+    init(dataService: DataService, settingsPersistanceService: SettingsRepositoryProtocol) {
+        self.dataService = dataService
         self.settingsPersistanceService = settingsPersistanceService
     }
     
     var onSearchTapped: (()->Void)?
     var onSettingsTapped:(()->Void)?
     
-//    func showTempDetails(settings: Settings) {
-//        if settings.isCelsiusON {
-//
-//        }
-//        else if settings.isFahreheitON {
-//
-//        }
-//        else if settings.isHumidityON {
-//
-//        }
-//        else if settings.isPressureON {
-//
-//        }
-//        else if settings.isWindON {
-//
-//        }
-//    }
+    
     func getSettings() -> Settings {
         return ServiceFactory.settingsPersistenceService.getSettings()
     }
