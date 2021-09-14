@@ -16,8 +16,9 @@ class LocationService: NSObject {
     var latitude = Double()
     var longitude = Double()
     
-    func getCurrentLocationURL() {
+    func getCurrentLocation() {
         locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         locationManager.requestLocation()
         locationManager.startUpdatingLocation()
     }

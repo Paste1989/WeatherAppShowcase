@@ -8,15 +8,18 @@
 import Foundation
 import CoreLocation
 
-protocol DataServiceProtocol {
-    func didUpdateData(_ weatherManager: DataService, weather: WeatherModel)
-    func didFailWithError(error: Error)
-}
+//protocol DataServiceProtocol {
+//    func didUpdateData(_ weatherManager: DataService, weather: WeatherModel)
+//    func didFailWithError(error: Error)
+//}
 
-class DataService  {
+class DataService {
+    var onWeatherUpdateSuccess: ((WeatherModel)->Void)?
+    var onWeatherUpdateFailure: ((Error)->Void)?
+    
     let baseURL = "https://api.openweathermap.org/data/2.5/weather?appid=4dc5e730ec9e6a9cc99b8ebebfab801a&units=metric"
     
-    var delegate: DataServiceProtocol?
+    //var delegate: DataServiceProtocol?
     
     func fetchWeatherDataForCity(with cityName: String) {
         let urlString = "\(baseURL)&q=\(cityName)"
@@ -33,12 +36,15 @@ class DataService  {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    self.delegate?.didFailWithError(error: error!)
+                    //self.delegate?.didFailWithError(error: error!)
+                    self.onWeatherUpdateFailure?(error!)
                     return
                 }
+                
                 if let safeData = data {
                     if let weather = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateData(self, weather: weather)
+                        //self.delegate?.didUpdateData(self, weather: weather)
+                        self.onWeatherUpdateSuccess?(weather)
                     }
                 }
             }
@@ -70,7 +76,8 @@ class DataService  {
             return weatherData
             
         } catch {
-            delegate?.didFailWithError(error: error)
+            //delegate?.didFailWithError(error: error)
+            onWeatherUpdateFailure?(error)
             print(error)
             return nil
         }

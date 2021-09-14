@@ -20,14 +20,13 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataService.delegate = self
+        locationService.getCurrentLocation()
         addCallbacks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isVisible(false)
-        locationService.getCurrentLocationURL()
         setupOptions()
     }
     
@@ -37,6 +36,14 @@ class HomeViewController: UIViewController {
         }
         homeView.onSettingsButtonTapped = { [weak self] in
             self?.viewModel.onSettingsTapped?()
+        }
+        
+        dataService.onWeatherUpdateSuccess = { [weak self] weather in
+            self?.homeView.updateWeatherData(weather: weather)
+            
+        }
+        dataService.onWeatherUpdateFailure = { [weak self] error in
+            print(error)
         }
         
         locationService.onCoordinatesFetch = { [weak self] lat, lon in
@@ -50,14 +57,14 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: DataServiceProtocol {
-    func didUpdateData(_ weatherManager: DataService, weather: WeatherModel) {
-        homeView.updateWeatherData(weather: weather)
-    }
-    
-    func didFailWithError(error: Error) {
-        print("Error: \(error)")
-    }
-    
-    
-}
+//extension HomeViewController: DataServiceProtocol {
+//    func didUpdateData(_ weatherManager: DataService, weather: WeatherModel) {
+//        homeView.updateWeatherData(weather: weather)
+//    }
+//
+//    func didFailWithError(error: Error) {
+//        print("Error: \(error)")
+//    }
+//
+//
+//}
