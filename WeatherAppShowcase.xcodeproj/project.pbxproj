@@ -135,9 +135,6 @@
 				C56C74FD26E4C450000D32CD /* Model */,
 				C56C74FA26E4C3EA000D32CD /* Services */,
 				C5B1BE0C26E0C0D300579339 /* UI */,
-				C5B1BE1226E0C18200579339 /* HomeVC */,
-				C5B1BE2026E1F76A00579339 /* SearchVC */,
-				C56C74F326E24606000D32CD /* SettingsVC */,
 				C5B1BE1526E0C27000579339 /* Common */,
 				C5B1BDFE26E0C0CA00579339 /* Main.storyboard */,
 				C5B1BE0126E0C0CC00579339 /* Assets.xcassets */,
@@ -151,6 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				C5B1BE0D26E0C0F600579339 /* RootCoordinator */,
+				C5B1BE1226E0C18200579339 /* HomeVC */,
+				C5B1BE2026E1F76A00579339 /* SearchVC */,
+				C56C74F326E24606000D32CD /* SettingsVC */,
 			);
 			path = UI;
 			sourceTree = "<group>";
