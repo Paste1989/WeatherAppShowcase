@@ -15,4 +15,8 @@ final class ServiceFactory {
     static var dataService: DataService = {
         return DataService()
     }()
+    
+    static var locationService: LocationService = {
+        return LocationService()
+    }()
 }

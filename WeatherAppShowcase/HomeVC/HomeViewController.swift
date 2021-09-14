@@ -11,7 +11,8 @@ class HomeViewController: UIViewController {
     private lazy var homeView = HomeView()
     var viewModel: HomeViewModel!
     
-    let wmanager = DataService()
+    let dataService = DataService()
+    let locationService = LocationService()
     
     override func loadView() {
         view = homeView
@@ -19,18 +20,15 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        wmanager.delegate = self
+        dataService.delegate = self
         addCallbacks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isVisible(false)
-        let settings = viewModel.getSettings()
-        homeView.showDetails(humidity: !settings.isHumidityON, presssure: !settings.isPressureON, wind: !settings.isWindON)
-        
-        
-        wmanager.fetchData(with: "Osijek")
+        locationService.getCurrentLocationURL()
+        setupOptions()
     }
     
     private func addCallbacks() {
@@ -40,6 +38,15 @@ class HomeViewController: UIViewController {
         homeView.onSettingsButtonTapped = { [weak self] in
             self?.viewModel.onSettingsTapped?()
         }
+        
+        locationService.onCoordinatesFetch = { [weak self] lat, lon in
+            self?.dataService.fetchWeatherDataForLocation(latitude: lat, longitude: lon)
+        }
+    }
+    
+    private func setupOptions() {
+        guard let settings = viewModel.getSettings() else { return }
+        homeView.showDetails(humidity: !settings.isHumidityON, presssure: !settings.isPressureON, wind: !settings.isWindON)
     }
 }
 

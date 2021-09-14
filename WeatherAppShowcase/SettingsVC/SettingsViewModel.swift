@@ -21,7 +21,7 @@ class SettingsViewModel {
         settingsPersistanceService.saveSettings(settings)
     }
     
-    func getSettings() -> Settings {
+    func getSettings() -> Settings? {
         return settingsPersistanceService.getSettings()
     }
     

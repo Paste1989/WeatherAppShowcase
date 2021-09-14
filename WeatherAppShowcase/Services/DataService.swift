@@ -18,12 +18,12 @@ class DataService  {
     
     var delegate: DataServiceProtocol?
     
-    func fetchData(with cityName: String) {
+    func fetchWeatherDataForCity(with cityName: String) {
         let urlString = "\(baseURL)&q=\(cityName)"
         performRequest(with: urlString)
     }
     
-    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    func fetchWeatherDataForLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let urlString = "\(baseURL)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString)
     }
@@ -63,9 +63,9 @@ class DataService  {
             let weatherData = WeatherModel(conditionId: id, cityName: name, temperature: temp, minTemp: minTemp, maxTemp: maxTemp, humidity: humidity, pressure: pressure, wind: Int(windSpeed))
             
             
-            print("OSIJEK: \(weatherData.cityName)")
-            print("OSIJEK_temp: \(weatherData.temperatureString)")
-            print("OSIJEK_id: \(weatherData.conditionId)")
+            print("name: \(weatherData.cityName)")
+            print("temp: \(weatherData.temperatureString)")
+            print("id: \(weatherData.conditionId)")
             
             return weatherData
             

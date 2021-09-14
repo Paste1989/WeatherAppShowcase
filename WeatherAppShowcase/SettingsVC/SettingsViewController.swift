@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         let getSettings = ServiceFactory.settingsPersistenceService.getSettings()
-        settingsView.setupButtonView(celsiusON: getSettings.isCelsiusON, fahrenheitON: getSettings.isFahreheitON, humidityON: getSettings.isHumidityON, pressureON: getSettings.isPressureON, windON: getSettings.isWindON)
+        settingsView.setupButtonView(celsiusON: getSettings?.isCelsiusON ?? true, fahrenheitON: getSettings?.isFahreheitON ?? false, humidityON: getSettings?.isHumidityON ?? true, pressureON: getSettings?.isPressureON ?? true, windON: getSettings?.isWindON ?? true)
     }
     
     private func addCallbacks() {

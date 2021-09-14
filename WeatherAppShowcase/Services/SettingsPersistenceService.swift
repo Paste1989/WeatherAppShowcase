@@ -13,7 +13,7 @@ enum SavingKeys: String {
 
 protocol SettingsRepositoryProtocol {
     func saveSettings (_ settings: Settings)
-    func getSettings() -> Settings
+    func getSettings() -> Settings?
 }
 
 class SettingsPersistenceService: SettingsRepositoryProtocol {
@@ -28,7 +28,7 @@ class SettingsPersistenceService: SettingsRepositoryProtocol {
         }
     }
     
-    func getSettings() -> Settings {
+    func getSettings() -> Settings? {
         var storedSettings: Settings!
         if let data = UserDefaults.standard.data(forKey: SavingKeys.settingsKey.rawValue) {
             do {
