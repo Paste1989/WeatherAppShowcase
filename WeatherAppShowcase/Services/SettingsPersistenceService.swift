@@ -7,30 +7,33 @@
 
 import Foundation
 
-enum SavingKeys: String {
-   case settingsKey = "settingsKey"
+public enum SavingKeys: String {
+    case settingsKey = "settingsKey"
+    case searchedLocationsKey = "searchedLocationsKey"
 }
 
 protocol SettingsRepositoryProtocol {
-    func saveSettings (_ settings: Settings)
-    func getSettings() -> Settings?
+    func saveSettings (_ settings: Settings, with key: String)
+    func getSettings(with key:  String) -> Settings?
+    func saveLocations(location: String)
+    func getLocations() -> [String]
 }
 
 class SettingsPersistenceService: SettingsRepositoryProtocol {
-    func saveSettings(_ settings: Settings) {
+    func saveSettings(_ settings: Settings, with key: String) {
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(settings)
-            UserDefaults.standard.set(data, forKey: SavingKeys.settingsKey.rawValue)
+            UserDefaults.standard.set(data, forKey: key)
             UserDefaults.standard.synchronize()
         } catch {
             print("Unable to Encode Note (\(error))")
         }
     }
     
-    func getSettings() -> Settings? {
+    func getSettings(with key: String) -> Settings? {
         var storedSettings: Settings!
-        if let data = UserDefaults.standard.data(forKey: SavingKeys.settingsKey.rawValue) {
+        if let data = UserDefaults.standard.data(forKey: key) {
             do {
                 let decoder = JSONDecoder()
                 let decodedSettings = try decoder.decode(Settings.self, from: data)
@@ -46,4 +49,18 @@ class SettingsPersistenceService: SettingsRepositoryProtocol {
     }
     
     
+    func saveLocations(location: String) {
+        var locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
+        locations.append(location)
+        UserDefaults.standard.set(locations, forKey: SavingKeys.searchedLocationsKey.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func getLocations() -> [String] {
+        var locations = [String]()
+        locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
+        UserDefaults.standard.synchronize()
+        
+        return locations
+    }
 }

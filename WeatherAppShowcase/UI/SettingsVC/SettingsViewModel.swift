@@ -15,14 +15,13 @@ class SettingsViewModel {
     }
     
     var onViewWillApper: ((Settings)->Void)?
-//    var onViewWillDisappear: ((Settings)->Void)?
     
     func saveSettings(with settings: Settings) {
-        settingsPersistanceService.saveSettings(settings)
+        settingsPersistanceService.saveSettings(settings, with: SavingKeys.settingsKey.rawValue)
     }
     
     func getSettings() -> Settings? {
-        return settingsPersistanceService.getSettings()
+        return settingsPersistanceService.getSettings(with: SavingKeys.settingsKey.rawValue)
     }
     
 }

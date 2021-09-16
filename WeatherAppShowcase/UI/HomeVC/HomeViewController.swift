@@ -49,6 +49,10 @@ class HomeViewController: UIViewController {
         locationService.onCoordinatesFetch = { [weak self] lat, lon in
             self?.dataService.fetchWeatherDataForLocation(latitude: lat, longitude: lon)
         }
+        
+        viewModel.onWeatherSearched = { [weak self] name in
+            self?.dataService.fetchWeatherDataForCity(with: name)
+        }
     }
     
     private func setupOptions() {

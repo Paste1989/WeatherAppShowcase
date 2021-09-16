@@ -14,5 +14,14 @@ class SearchViewModel {
         self.dataService = dataService
         self.settingsPersistanceService = settingsPersistanceService
     }
+    var onSearchButtonTapped: ((String)->Void)?
+    
+    func saveLocations(location: String) {
+        settingsPersistanceService.saveLocations(location: location)
+    }
+    
+    func getLocations() -> [String] {
+        return settingsPersistanceService.getLocations()
+    }
     
 }

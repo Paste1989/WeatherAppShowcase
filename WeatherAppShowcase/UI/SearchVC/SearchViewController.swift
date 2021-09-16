@@ -10,6 +10,8 @@ import UIKit
 class SearchViewController: UIViewController {
     private lazy var searchView = SearchView()
     var viewModel: SearchViewModel!
+
+    var locations = [String]()
     
     override func loadView() {
         view = searchView
@@ -17,27 +19,34 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        addCallbacks()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isVisible(false)
+        
+        self.searchView.locations = viewModel.settingsPersistanceService.getLocations()
     }
     
     private func setupNavigationBar() {
-        DispatchQueue.main.async {
-//            self.navigationController?.navigationBar.isHidden = false
-//            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//            self.navigationController?.navigationBar.shadowImage = UIImage()
-//            self.navigationController?.navigationBar.isTranslucent = true
-            
+        DispatchQueue.main.async {  
             let backButton = UIBarButtonItem()
             backButton.title = ""
             backButton.image = UIImage(named: "back")
             backButton.tintColor = .black
             self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         }
+    }
+    
+    private func addCallbacks() {
+        searchView.onSearchButtonTapped = { [weak self] name in
+            self?.viewModel.onSearchButtonTapped?(name)
+            self?.viewModel.saveLocations(location: name)
+        }
+        
+        
+        
     }
     
 }

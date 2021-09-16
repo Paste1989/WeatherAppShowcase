@@ -14,9 +14,9 @@ class SearchView: UIView {
     private lazy var searchButton = UIButton(type: .system)
     private lazy var locationTableView = UITableView()
     
-    var onSearchButtonTapped: (()->Void)?
+    var onSearchButtonTapped: ((String)->Void)?
     
-    var locations: [String] = ["London", "Berlin", "Zagreb"]
+    var locations: [String]!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,7 +84,9 @@ class SearchView: UIView {
     
     @objc func searchButtonTapped() {
         print("search tapped")
-        onSearchButtonTapped?()
+        if let cityName = searchTextField.text {
+            onSearchButtonTapped?(cityName)
+        }
     }
 }
 

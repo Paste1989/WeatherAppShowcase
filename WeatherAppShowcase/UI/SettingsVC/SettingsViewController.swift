@@ -23,7 +23,7 @@ class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
-        let getSettings = ServiceFactory.settingsPersistenceService.getSettings()
+        let getSettings = ServiceFactory.settingsPersistenceService.getSettings(with: SavingKeys.settingsKey.rawValue)
         settingsView.setupButtonView(celsiusON: getSettings?.isCelsiusON ?? true, fahrenheitON: getSettings?.isFahreheitON ?? false, humidityON: getSettings?.isHumidityON ?? true, pressureON: getSettings?.isPressureON ?? true, windON: getSettings?.isWindON ?? true)
     }
     
