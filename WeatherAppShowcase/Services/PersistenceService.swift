@@ -57,10 +57,10 @@ class PersistenceService: PersistanceRepositoryProtocol {
     }
     
     func getLocations() -> [String] {
-        var locations = [String]()
-        locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
+        let locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
         UserDefaults.standard.synchronize()
         
         return locations
     }
+    
 }

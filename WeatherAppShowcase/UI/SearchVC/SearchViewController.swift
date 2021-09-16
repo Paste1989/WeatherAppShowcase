@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isVisible(false)
         
-        self.searchView.locations = viewModel.settingsPersistanceService.getLocations()
+        self.searchView.locations = viewModel.persistanceService.getLocations()
     }
     
     private func setupNavigationBar() {
@@ -47,6 +47,10 @@ class SearchViewController: UIViewController {
         
         searchView.onLocationTapped = { [weak self] name in
             self?.viewModel.onSearchButtonTapped?(name)
+        }
+        
+        viewModel.dataService.onWeatherUpdateFailure = { [weak self] index in
+    
         }
         
         

@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 
 class SettingsViewModel {
-    let settingsPersistanceService: PersistanceRepositoryProtocol
-    init(settingsPersistanceService: PersistanceRepositoryProtocol) {
-        self.settingsPersistanceService = settingsPersistanceService
+    let persistanceService: PersistanceRepositoryProtocol
+    init(persistanceService: PersistanceRepositoryProtocol) {
+        self.persistanceService = persistanceService
     }
     
     var onViewWillApper: ((Settings)->Void)?
     
     func saveSettings(with settings: Settings) {
-        settingsPersistanceService.saveSettings(settings, with: SavingKeys.settingsKey.rawValue)
+        persistanceService.saveSettings(settings, with: SavingKeys.settingsKey.rawValue)
     }
     
     func getSettings() -> Settings? {
-        return settingsPersistanceService.getSettings(with: SavingKeys.settingsKey.rawValue)
+        return persistanceService.getSettings(with: SavingKeys.settingsKey.rawValue)
     }
     
 }

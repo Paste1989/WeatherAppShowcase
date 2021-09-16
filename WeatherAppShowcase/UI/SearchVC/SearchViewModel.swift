@@ -9,19 +9,19 @@ import Foundation
 
 class SearchViewModel {
     let dataService: DataService
-    let settingsPersistanceService: PersistanceRepositoryProtocol
-    init(dataService: DataService, settingsPersistanceService: PersistanceRepositoryProtocol) {
+    let persistanceService: PersistanceRepositoryProtocol
+    init(dataService: DataService, persistanceService: PersistanceRepositoryProtocol) {
         self.dataService = dataService
-        self.settingsPersistanceService = settingsPersistanceService
+        self.persistanceService = persistanceService
     }
     var onSearchButtonTapped: ((String)->Void)?
     
     func saveLocations(location: String) {
-        settingsPersistanceService.saveLocations(location: location)
+        persistanceService.saveLocations(location: location)
     }
     
     func getLocations() -> [String] {
-        return settingsPersistanceService.getLocations()
+        return persistanceService.getLocations()
     }
     
 }

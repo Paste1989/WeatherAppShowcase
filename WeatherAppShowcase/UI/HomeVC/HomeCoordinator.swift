@@ -24,7 +24,7 @@ class HomeCoordinator: Coordinator {
     
     private func createHomeVC() -> UIViewController {
         let vc = HomeViewController()
-        vc.viewModel = HomeViewModel(dataService: ServiceFactory.dataService, settingsPersistanceService: ServiceFactory.settingsPersistenceService, locationService: ServiceFactory.locationService)
+        vc.viewModel = HomeViewModel(dataService: ServiceFactory.dataService, persistanceService: ServiceFactory.settingsPersistenceService, locationService: ServiceFactory.locationService)
         
         vc.viewModel.onSearchTapped = { [weak self] in
             _ = self?.createSearchVC()
@@ -42,7 +42,7 @@ class HomeCoordinator: Coordinator {
     
     private func createSearchVC() -> UIViewController {
         let vc = SearchViewController()
-        vc.viewModel = SearchViewModel(dataService: ServiceFactory.dataService, settingsPersistanceService: ServiceFactory.settingsPersistenceService)
+        vc.viewModel = SearchViewModel(dataService: ServiceFactory.dataService, persistanceService: ServiceFactory.settingsPersistenceService)
         
         vc.viewModel.onSearchButtonTapped = { [weak self] name in
             vc.viewModel.dataService.fetchWeatherDataForCity(with: name)
@@ -56,7 +56,7 @@ class HomeCoordinator: Coordinator {
     
     private func createSettingsVC() -> UIViewController {
         let vc = SettingsViewController()
-        vc.viewModel = SettingsViewModel(settingsPersistanceService: ServiceFactory.settingsPersistenceService)
+        vc.viewModel = SettingsViewModel(persistanceService: ServiceFactory.settingsPersistenceService)
     
         navigationController.pushViewController(vc, animated: true)
         return vc
