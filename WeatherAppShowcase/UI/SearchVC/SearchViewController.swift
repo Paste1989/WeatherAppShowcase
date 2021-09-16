@@ -45,6 +45,9 @@ class SearchViewController: UIViewController {
             self?.viewModel.saveLocations(location: name)
         }
         
+        searchView.onLocationTapped = { [weak self] name in
+            self?.viewModel.onSearchButtonTapped?(name)
+        }
         
         
     }

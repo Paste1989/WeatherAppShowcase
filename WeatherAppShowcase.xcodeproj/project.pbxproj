@@ -10,7 +10,7 @@
 		C56C74F526E24623000D32CD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74F426E24623000D32CD /* SettingsView.swift */; };
 		C56C74F726E249AC000D32CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74F626E249AC000D32CD /* SettingsViewController.swift */; };
 		C56C74F926E249DB000D32CD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74F826E249DB000D32CD /* SettingsViewModel.swift */; };
-		C56C74FC26E4C408000D32CD /* SettingsPersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74FB26E4C408000D32CD /* SettingsPersistenceService.swift */; };
+		C56C74FC26E4C408000D32CD /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74FB26E4C408000D32CD /* PersistenceService.swift */; };
 		C56C74FF26E4C45F000D32CD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C74FE26E4C45F000D32CD /* Settings.swift */; };
 		C56C750126E4C6F3000D32CD /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C750026E4C6F3000D32CD /* ServiceFactory.swift */; };
 		C56C750326E60B10000D32CD /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C750226E60B10000D32CD /* WeatherData.swift */; };
@@ -41,7 +41,7 @@
 		C56C74F426E24623000D32CD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C56C74F626E249AC000D32CD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C56C74F826E249DB000D32CD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		C56C74FB26E4C408000D32CD /* SettingsPersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPersistenceService.swift; sourceTree = "<group>"; };
+		C56C74FB26E4C408000D32CD /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		C56C74FE26E4C45F000D32CD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C56C750026E4C6F3000D32CD /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
 		C56C750226E60B10000D32CD /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 			children = (
 				C56C750026E4C6F3000D32CD /* ServiceFactory.swift */,
 				C56C750426E60E58000D32CD /* DataService.swift */,
-				C56C74FB26E4C408000D32CD /* SettingsPersistenceService.swift */,
+				C56C74FB26E4C408000D32CD /* PersistenceService.swift */,
 				C57CC18D26F096ED00D1E786 /* LocationService.swift */,
 			);
 			path = Services;
@@ -299,7 +299,7 @@
 				C5B1BE1926E0C28400579339 /* UIViewControllerExtension.swift in Sources */,
 				C5B1BE1426E0C19700579339 /* HomeCoordinator.swift in Sources */,
 				C56C74F926E249DB000D32CD /* SettingsViewModel.swift in Sources */,
-				C56C74FC26E4C408000D32CD /* SettingsPersistenceService.swift in Sources */,
+				C56C74FC26E4C408000D32CD /* PersistenceService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

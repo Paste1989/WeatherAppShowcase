@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class SettingsViewModel {
-    let settingsPersistanceService: SettingsRepositoryProtocol
-    init(settingsPersistanceService: SettingsRepositoryProtocol) {
+    let settingsPersistanceService: PersistanceRepositoryProtocol
+    init(settingsPersistanceService: PersistanceRepositoryProtocol) {
         self.settingsPersistanceService = settingsPersistanceService
     }
     

@@ -12,9 +12,10 @@ class SearchView: UIView {
     private lazy var backgroundImageView = UIImageView()
     private lazy var searchTextField = UITextField()
     private lazy var searchButton = UIButton(type: .system)
-    private lazy var locationTableView = UITableView()
+    lazy var locationTableView = UITableView()
     
     var onSearchButtonTapped: ((String)->Void)?
+    var onLocationTapped: ((String)->Void)?
     
     var locations: [String]!
     
@@ -39,7 +40,7 @@ class SearchView: UIView {
         backgroundImageView.image = UIImage(named: "background")
         backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
-        
+
         searchTextField.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         searchTextField.textColor = .white
         searchTextField.layer.cornerRadius = 10
@@ -47,14 +48,15 @@ class SearchView: UIView {
         searchTextField.placeholder = "Search"
         searchTextField.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
         addSubview(searchTextField)
-        
+
         searchButton.setImage(UIImage(named: "search"), for: .normal)
         searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
         addSubview(searchButton)
         
         locationTableView.backgroundColor = .clear
         locationTableView.separatorColor = .clear
-        backgroundImageView.addSubview(locationTableView)
+        locationTableView.showsVerticalScrollIndicator = false
+        addSubview(locationTableView)
     }
     
     private func setupConstraints() {
@@ -63,21 +65,21 @@ class SearchView: UIView {
             backgroundImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             backgroundImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             backgroundImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            
-            searchTextField.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 100),
-            searchTextField.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 25),
-            searchTextField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -30),
+
+            searchTextField.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            searchTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            searchTextField.widthAnchor.constraint(equalToConstant: 250),
             searchTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            searchButton.topAnchor.constraint(equalTo: backgroundImageView.topAnchor, constant: 100),
-            searchButton.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -25),
+
+            searchButton.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             searchButton.heightAnchor.constraint(equalToConstant: 50),
             searchButton.widthAnchor.constraint(equalToConstant: 50),
             
             locationTableView.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 25),
-            locationTableView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: 50),
-            locationTableView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 25),
-            locationTableView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -25),
+            locationTableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            locationTableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            locationTableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
         ])
     }
@@ -101,6 +103,11 @@ extension SearchView: UITableViewDelegate, UITableViewDataSource {
         cell.setupView(name: locations[indexPath.row])
          
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let location = locations[indexPath.row]
+        onLocationTapped?(location)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

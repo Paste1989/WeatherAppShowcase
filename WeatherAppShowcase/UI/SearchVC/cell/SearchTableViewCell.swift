@@ -19,7 +19,7 @@ class SearchTableViewCell: UITableViewCell {
     
     private func setupCellView() {
         self.backgroundColor = .clear
-        
+        self.selectionStyle = .none
         locationName.textAlignment = .left
         locationName.font = UIFont.systemFont(ofSize: 25)
         addSubview(locationName)

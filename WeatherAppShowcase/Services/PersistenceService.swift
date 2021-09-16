@@ -12,14 +12,14 @@ public enum SavingKeys: String {
     case searchedLocationsKey = "searchedLocationsKey"
 }
 
-protocol SettingsRepositoryProtocol {
+protocol PersistanceRepositoryProtocol {
     func saveSettings (_ settings: Settings, with key: String)
     func getSettings(with key:  String) -> Settings?
     func saveLocations(location: String)
     func getLocations() -> [String]
 }
 
-class SettingsPersistenceService: SettingsRepositoryProtocol {
+class PersistenceService: PersistanceRepositoryProtocol {
     func saveSettings(_ settings: Settings, with key: String) {
         do {
             let encoder = JSONEncoder()

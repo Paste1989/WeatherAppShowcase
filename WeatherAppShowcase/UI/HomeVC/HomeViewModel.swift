@@ -10,9 +10,9 @@ import UIKit
 
 class HomeViewModel {
     let dataService: DataService
-    let settingsPersistanceService: SettingsRepositoryProtocol
+    let settingsPersistanceService: PersistanceRepositoryProtocol
     let locationService: LocationService
-    init(dataService: DataService, settingsPersistanceService: SettingsRepositoryProtocol, locationService: LocationService) {
+    init(dataService: DataService, settingsPersistanceService: PersistanceRepositoryProtocol, locationService: LocationService) {
         self.dataService = dataService
         self.settingsPersistanceService = settingsPersistanceService
         self.locationService = locationService

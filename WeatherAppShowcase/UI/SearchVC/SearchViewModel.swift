@@ -9,8 +9,8 @@ import Foundation
 
 class SearchViewModel {
     let dataService: DataService
-    let settingsPersistanceService: SettingsRepositoryProtocol
-    init(dataService: DataService, settingsPersistanceService: SettingsRepositoryProtocol) {
+    let settingsPersistanceService: PersistanceRepositoryProtocol
+    init(dataService: DataService, settingsPersistanceService: PersistanceRepositoryProtocol) {
         self.dataService = dataService
         self.settingsPersistanceService = settingsPersistanceService
     }

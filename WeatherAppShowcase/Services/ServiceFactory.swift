@@ -8,8 +8,8 @@
 import Foundation
 
 final class ServiceFactory {
-    static var settingsPersistenceService: SettingsPersistenceService = {
-        return SettingsPersistenceService()
+    static var settingsPersistenceService: PersistenceService = {
+        return PersistenceService()
     }()
     
     static var dataService: DataService = {
