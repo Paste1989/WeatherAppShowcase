@@ -49,6 +49,7 @@ class SettingsView: UIView {
     }
     
     private func setupView() {
+        self.clipsToBounds = true
         backgroundImageView.image = UIImage(named: "background")
         backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
