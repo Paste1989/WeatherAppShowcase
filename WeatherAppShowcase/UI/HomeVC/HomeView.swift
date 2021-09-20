@@ -120,7 +120,7 @@ class HomeView: UIView {
         minTempDescriptionLabel.font = UIFont.systemFont(ofSize: 30)
         minTempStackView.addSubview(minTempDescriptionLabel)
         
-        minTempSymbolLabel.text = "c"
+        minTempSymbolLabel.text = ""
         minTempSymbolLabel.textAlignment = .center
         minTempSymbolLabel.font = UIFont.systemFont(ofSize: 30)
         minTempStackView.addSubview(minTempSymbolLabel)

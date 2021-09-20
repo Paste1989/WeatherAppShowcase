@@ -17,6 +17,7 @@ protocol PersistanceRepositoryProtocol {
     func getSettings(with key:  String) -> Settings?
     func saveLocations(location: String)
     func getLocations() -> [String]
+    func removeLocation(index: Int)
 }
 
 class PersistenceService: PersistanceRepositoryProtocol {
@@ -63,4 +64,10 @@ class PersistenceService: PersistanceRepositoryProtocol {
         return locations
     }
     
+    func removeLocation(index: Int) {
+        var locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
+        locations.remove(at: index)
+        UserDefaults.standard.set(locations, forKey: SavingKeys.searchedLocationsKey.rawValue)
+        UserDefaults.standard.synchronize()
+    }
 }

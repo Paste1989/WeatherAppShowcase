@@ -49,11 +49,13 @@ class SearchViewController: UIViewController {
             self?.viewModel.onSearchButtonTapped?(name)
         }
         
+        searchView.onRemoveLocation = { [weak self] index in
+            self?.viewModel.persistanceService.removeLocation(index: index)
+        }
+        
         viewModel.dataService.onWeatherUpdateFailure = { [weak self] index in
     
         }
-        
-        
     }
     
 }

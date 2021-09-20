@@ -16,6 +16,7 @@ class SearchView: UIView {
     
     var onSearchButtonTapped: ((String)->Void)?
     var onLocationTapped: ((String)->Void)?
+    var onRemoveLocation: ((Int)->Void)?
     
     var locations: [String]!
     
@@ -113,6 +114,15 @@ extension SearchView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            locations.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            tableView.reloadData()
+            onRemoveLocation?(indexPath.row)
+        }
     }
     
 }
