@@ -52,7 +52,10 @@ class PersistenceService: PersistanceRepositoryProtocol {
     
     func saveLocations(location: String) {
         var locations = UserDefaults.standard.object(forKey: SavingKeys.searchedLocationsKey.rawValue) as! [String]
-        locations.append(location)
+        
+        if !locations.contains(location) {
+            locations.append(location)
+        }
         UserDefaults.standard.set(locations, forKey: SavingKeys.searchedLocationsKey.rawValue)
         UserDefaults.standard.synchronize()
     }
