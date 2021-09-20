@@ -14,6 +14,9 @@ class HomeViewController: UIViewController {
     let dataService = DataService()
     let locationService = LocationService()
     
+    
+    var currentWeather: WeatherModel!
+    
     override func loadView() {
         view = homeView
     }
@@ -28,6 +31,14 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isVisible(false)
         setupOptions()
+        guard let settings = viewModel.getSettings() else { return }
+        _ = self.homeView.updateMeasurementSymbol(celsiusON: settings.isCelsiusON)
+
+        if currentWeather != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.homeView.updateTemperatures(temp: self.currentWeather.temperature, minTemp: self.currentWeather.maxTemp, maxTemp: self.currentWeather.minTemp, isCelsius: settings.isCelsiusON)
+            }
+        }
     }
     
     private func addCallbacks() {
@@ -39,8 +50,9 @@ class HomeViewController: UIViewController {
         }
         
         dataService.onWeatherUpdateSuccess = { [weak self] weather in
-            self?.homeView.updateWeatherData(weather: weather)
-            
+            guard let settings = self?.viewModel.getSettings() else { return }
+            self?.homeView.updateWeatherData(weather: weather, settings: settings)
+            self?.currentWeather = weather
         }
         dataService.onWeatherUpdateFailure = { [weak self] error in
             print(error)
@@ -52,6 +64,10 @@ class HomeViewController: UIViewController {
         
         viewModel.onWeatherSearched = { [weak self] name in
             self?.dataService.fetchWeatherDataForCity(with: name)
+        }
+        
+        viewModel.onSettingsStored = { [weak self] settings in
+           _ = self?.homeView.updateMeasurementSymbol(celsiusON: settings.isCelsiusON)
         }
     }
     

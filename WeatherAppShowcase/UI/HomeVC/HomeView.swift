@@ -17,6 +17,7 @@ class HomeView: UIView {
     
     private lazy var mainInfoView = UIView()
     private lazy var currentTemperatureLabel = UILabel()
+    private lazy var currentTempSymbol = UILabel()
     private lazy var locationLabel = UILabel()
     
     private lazy var tempStackView = UIStackView()
@@ -25,7 +26,9 @@ class HomeView: UIView {
     private lazy var minTempDescriptionLabel = UILabel()
     private lazy var maxTempDescriptionLabel = UILabel()
     private lazy var minTempLabel = UILabel()
+    private lazy var minTempSymbolLabel = UILabel()
     private lazy var maxTempLabel = UILabel()
+    private lazy var maxTempSymbolLabel = UILabel()
     
     private lazy var detailsStackView = UIStackView()
     private lazy var humidityStackView = UIStackView()
@@ -69,22 +72,28 @@ class HomeView: UIView {
         settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         addSubview(settingsButton)
         
-        weatherImageView.image = UIImage(systemName: "sun.max")?.withRenderingMode(.alwaysTemplate)
+        weatherImageView.image = UIImage(systemName: "")?.withRenderingMode(.alwaysTemplate)
         weatherImageView.tintColor = UIColor.black
         topView.addSubview(weatherImageView)
         
         mainInfoView.backgroundColor = .clear
         backgroundImageView.addSubview(mainInfoView)
         
-        currentTemperatureLabel.text = "21°C"
+        currentTemperatureLabel.text = ""
         currentTemperatureLabel.font = UIFont.boldSystemFont(ofSize: 75)
-        currentTemperatureLabel.contentMode = .right
+        currentTemperatureLabel.textAlignment = .right
         currentTemperatureLabel.adjustsFontSizeToFitWidth = true
         mainInfoView.addSubview(currentTemperatureLabel)
         
-        locationLabel.text = "London"
+        currentTempSymbol.text = ""
+        currentTempSymbol.font = UIFont.boldSystemFont(ofSize: 75)
+        currentTempSymbol.textAlignment = .right
+        currentTempSymbol.adjustsFontSizeToFitWidth = true
+        mainInfoView.addSubview(currentTempSymbol)
+        
+        locationLabel.text = ""
         locationLabel.font = UIFont.systemFont(ofSize: 30)
-        locationLabel.contentMode = .right
+        locationLabel.textAlignment = .right
         locationLabel.adjustsFontSizeToFitWidth = true
         mainInfoView.addSubview(locationLabel)
         
@@ -107,24 +116,34 @@ class HomeView: UIView {
         tempStackView.addSubview(maxTempStackView)
         
         minTempDescriptionLabel.text = "min"
-        minTempDescriptionLabel.contentMode = .center
+        minTempDescriptionLabel.textAlignment = .center
         minTempDescriptionLabel.font = UIFont.systemFont(ofSize: 30)
         minTempStackView.addSubview(minTempDescriptionLabel)
         
+        minTempSymbolLabel.text = "c"
+        minTempSymbolLabel.textAlignment = .center
+        minTempSymbolLabel.font = UIFont.systemFont(ofSize: 30)
+        minTempStackView.addSubview(minTempSymbolLabel)
+        
         maxTempDescriptionLabel.text = "max"
-        maxTempDescriptionLabel.contentMode = .center
+        maxTempDescriptionLabel.textAlignment = .center
         maxTempDescriptionLabel.font = UIFont.systemFont(ofSize: 30)
         maxTempStackView.addSubview(maxTempDescriptionLabel)
         
-        minTempLabel.text = "14.5°C"
-        minTempLabel.contentMode = .center
+        minTempLabel.text = ""
+        minTempLabel.textAlignment = .center
         minTempLabel.font = UIFont.systemFont(ofSize: 30)
         minTempStackView.addSubview(minTempLabel)
         
-        maxTempLabel.text = "31.2°C"
-        maxTempLabel.contentMode = .center
+        maxTempLabel.text = ""
+        maxTempLabel.textAlignment = .center
         maxTempLabel.font = UIFont.systemFont(ofSize: 30)
         maxTempStackView.addSubview(maxTempLabel)
+        
+        maxTempSymbolLabel.text = ""
+        maxTempSymbolLabel.textAlignment = .center
+        maxTempSymbolLabel.font = UIFont.systemFont(ofSize: 30)
+        maxTempStackView.addSubview(maxTempSymbolLabel)
         
         detailsStackView.backgroundColor = .clear
         detailsStackView.axis = .horizontal
@@ -168,19 +187,19 @@ class HomeView: UIView {
         windDescriptionLabel.textColor = .white
         windStackView.addSubview(windDescriptionLabel)
         
-        humidityLabel.text = "0.79 %"
+        humidityLabel.text = "%"
         humidityLabel.contentMode = .center
         humidityLabel.font = UIFont.systemFont(ofSize: 20)
         humidityLabel.textColor = .white
         humidityStackView.addSubview(humidityLabel)
         
-        pressureLabel.text = "1016.7 hpa"
+        pressureLabel.text = "hpa"
         pressureLabel.contentMode = .center
         pressureLabel.font = UIFont.systemFont(ofSize: 20)
         pressureLabel.textColor = .white
         pressureStackView.addSubview(pressureLabel)
         
-        windLabel.text = "4.34 mph"
+        windLabel.text = "mph"
         windLabel.contentMode = .center
         windLabel.font = UIFont.systemFont(ofSize: 20)
         windLabel.textColor = .white
@@ -223,16 +242,21 @@ class HomeView: UIView {
             currentTemperatureLabel.heightAnchor.constraint(equalToConstant: 100),
             currentTemperatureLabel.widthAnchor.constraint(equalToConstant: 200),
             currentTemperatureLabel.topAnchor.constraint(equalTo: mainInfoView.topAnchor, constant: 10),
-            currentTemperatureLabel.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: 0),
+            currentTemperatureLabel.trailingAnchor.constraint(equalTo: currentTempSymbol.leadingAnchor, constant: 0),
+            
+            currentTempSymbol.heightAnchor.constraint(equalToConstant: 100),
+            currentTempSymbol.widthAnchor.constraint(equalToConstant: 100),
+            currentTempSymbol.topAnchor.constraint(equalTo: mainInfoView.topAnchor, constant: 10),
+            currentTempSymbol.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: -30),
             
             locationLabel.topAnchor.constraint(equalTo: currentTemperatureLabel.bottomAnchor, constant: 0),
-            locationLabel.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: 0),
+            locationLabel.trailingAnchor.constraint(equalTo: mainInfoView.trailingAnchor, constant: -35),
             locationLabel.heightAnchor.constraint(equalToConstant: 30),
             locationLabel.widthAnchor.constraint(equalToConstant: 150),
             
             tempStackView.topAnchor.constraint(equalTo: mainInfoView.bottomAnchor, constant: 50),
             tempStackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 25),
-            tempStackView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -25),
+            tempStackView.trailingAnchor.constraint(equalTo: backgroundImageView.trailingAnchor, constant: -35),
             tempStackView.heightAnchor.constraint(equalToConstant: 100),
             
             minTempStackView.topAnchor.constraint(equalTo: tempStackView.topAnchor, constant: 10),
@@ -257,13 +281,23 @@ class HomeView: UIView {
             
             minTempLabel.topAnchor.constraint(equalTo: minTempDescriptionLabel.bottomAnchor, constant: 0),
             minTempLabel.centerYAnchor.constraint(equalTo: minTempStackView.centerYAnchor, constant: 20),
-            minTempLabel.centerXAnchor.constraint(equalTo: minTempStackView.centerXAnchor, constant: 0),
+            minTempLabel.centerXAnchor.constraint(equalTo: minTempStackView.centerXAnchor, constant: -10),
             minTempLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            minTempSymbolLabel.topAnchor.constraint(equalTo: minTempDescriptionLabel.bottomAnchor, constant: 0),
+            minTempSymbolLabel.centerYAnchor.constraint(equalTo: minTempStackView.centerYAnchor, constant: 20),
+            minTempSymbolLabel.heightAnchor.constraint(equalToConstant: 50),
+            minTempSymbolLabel.leadingAnchor.constraint(equalTo: minTempLabel.trailingAnchor, constant: 0),
             
             maxTempLabel.topAnchor.constraint(equalTo: maxTempDescriptionLabel.bottomAnchor, constant: 0),
             maxTempLabel.centerYAnchor.constraint(equalTo: maxTempStackView.centerYAnchor, constant: 20),
-            maxTempLabel.centerXAnchor.constraint(equalTo: maxTempStackView.centerXAnchor, constant: 0),
+            maxTempLabel.centerXAnchor.constraint(equalTo: maxTempStackView.centerXAnchor, constant: -10),
             maxTempLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            maxTempSymbolLabel.topAnchor.constraint(equalTo: maxTempDescriptionLabel.bottomAnchor, constant: 0),
+            maxTempSymbolLabel.centerYAnchor.constraint(equalTo: maxTempStackView.centerYAnchor, constant: 20),
+            maxTempSymbolLabel.heightAnchor.constraint(equalToConstant: 50),
+            maxTempSymbolLabel.leadingAnchor.constraint(equalTo: maxTempLabel.trailingAnchor, constant: 0),
             
             detailsStackView.bottomAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -100),
             detailsStackView.leadingAnchor.constraint(equalTo: backgroundImageView.leadingAnchor, constant: 25),
@@ -317,16 +351,52 @@ class HomeView: UIView {
         ])
     }
     
-    func updateWeatherData(weather: WeatherModel) {
+    func updateWeatherData(weather: WeatherModel, settings: Settings) {
         DispatchQueue.main.async {
             self.weatherImageView.image = UIImage(systemName: weather.conditionName)
             self.locationLabel.text = weather.cityName
-            self.currentTemperatureLabel.text = weather.temperatureString
-            self.minTempLabel.text = String(weather.minTemp)
-            self.maxTempLabel.text = String(weather.maxTemp)
+//            self.currentTemperatureLabel.text = weather.temperatureString
+//            self.minTempLabel.text = "\(weather.minTemp)"
+//            self.maxTempLabel.text = "\(weather.maxTemp)"
             self.humidityLabel.text = "\(weather.humidity) %"
             self.pressureLabel.text = "\(weather.pressure) hpa"
             self.windLabel.text = "\(weather.wind) mph"
+            self.currentTempSymbol.text = self.updateMeasurementSymbol(celsiusON: settings.isCelsiusON)
+            self.minTempSymbolLabel.text = self.updateMeasurementSymbol(celsiusON: settings.isCelsiusON)
+            self.maxTempSymbolLabel.text = self.updateMeasurementSymbol(celsiusON: settings.isCelsiusON)
+            
+            self.updateTemperatures(temp: weather.temperature, minTemp: weather.maxTemp, maxTemp: weather.minTemp, isCelsius: settings.isCelsiusON)
+        }
+    }
+    
+    func updateMeasurementSymbol(celsiusON: Bool)->String {
+        var measure = String()
+        if celsiusON {
+            measure = "°C"
+            self.currentTempSymbol.text = measure
+            self.minTempSymbolLabel.text = measure
+            self.maxTempSymbolLabel.text = measure
+        }
+        else {
+            measure = "°F"
+            self.currentTempSymbol.text = measure
+            self.minTempSymbolLabel.text = measure
+            self.maxTempSymbolLabel.text = measure
+        }
+        
+        return measure
+    }
+    
+    func updateTemperatures(temp: Double, minTemp: Double, maxTemp: Double, isCelsius:  Bool) {
+        if isCelsius {
+            currentTemperatureLabel.text = String(format: "%.1f", (temp - 32) * 5 / -9)
+            minTempLabel.text = String(format: "%.1f", (minTemp - 32) * 5 / -9)
+            maxTempLabel.text = String(format: "%.1f", (maxTemp - 32) * 5 / -9)
+        }
+        else {
+            currentTemperatureLabel.text = String(format: "%.1f", temp * 9 / 5 + 32)
+            minTempLabel.text = String(format: "%.1f", minTemp * 9 / 5 + 32)
+            maxTempLabel.text = String(format: "%.1f", maxTemp * 9 / 5 + 32)
         }
     }
     

@@ -21,9 +21,11 @@ class HomeViewModel {
     var onSearchTapped: (()->Void)?
     var onSettingsTapped:(()->Void)?
     var onWeatherSearched: ((String)->Void)?
+    var onSettingsStored: ((Settings)->Void)?
     
     
     func getSettings() -> Settings? {
         return ServiceFactory.settingsPersistenceService.getSettings(with: SavingKeys.settingsKey.rawValue)
     }
+    
 }

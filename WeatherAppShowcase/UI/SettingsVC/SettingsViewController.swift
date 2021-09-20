@@ -27,6 +27,12 @@ class SettingsViewController: UIViewController {
         settingsView.setupButtonView(celsiusON: getSettings?.isCelsiusON ?? true, fahrenheitON: getSettings?.isFahreheitON ?? false, humidityON: getSettings?.isHumidityON ?? true, pressureON: getSettings?.isPressureON ?? true, windON: getSettings?.isWindON ?? true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let settings = ServiceFactory.settingsPersistenceService.getSettings(with: SavingKeys.settingsKey.rawValue) else { return }
+        viewModel.onViewWillDissapear?(settings)
+    }
+    
     private func addCallbacks() {
         settingsView.onCelsiusButtonTapped = { [weak self] tag in
             self?.settingsView.checkButtonTapped(buttonTag: tag)

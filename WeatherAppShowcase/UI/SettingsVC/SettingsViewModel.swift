@@ -15,6 +15,7 @@ class SettingsViewModel {
     }
     
     var onViewWillApper: ((Settings)->Void)?
+    var onViewWillDissapear: ((Settings)->Void)?
     
     func saveSettings(with settings: Settings) {
         persistanceService.saveSettings(settings, with: SavingKeys.settingsKey.rawValue)

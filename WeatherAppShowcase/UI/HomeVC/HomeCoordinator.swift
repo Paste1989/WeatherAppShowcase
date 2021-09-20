@@ -14,6 +14,8 @@ class HomeCoordinator: Coordinator {
         self.navigationController = navController
     }
     var onCityNameRecived: ((String)->Void)?
+    var onSettingsSaved: ((Settings)->Void)?
+    var onFahrenheit: (()->Void)?
     
     func start() -> UIViewController {
         let vc = createHomeVC()
@@ -36,6 +38,10 @@ class HomeCoordinator: Coordinator {
         onCityNameRecived = { [weak self] name in
             vc.viewModel.onWeatherSearched?(name)
         }
+         
+        onSettingsSaved = { [weak self] settings in
+            vc.viewModel.onSettingsStored?(settings)
+        }
         
         return vc
     }
@@ -57,6 +63,10 @@ class HomeCoordinator: Coordinator {
     private func createSettingsVC() -> UIViewController {
         let vc = SettingsViewController()
         vc.viewModel = SettingsViewModel(persistanceService: ServiceFactory.settingsPersistenceService)
+        
+        vc.viewModel.onViewWillDissapear = { [weak self] settings in
+            self?.onSettingsSaved?(settings)
+        }
     
         navigationController.pushViewController(vc, animated: true)
         return vc
