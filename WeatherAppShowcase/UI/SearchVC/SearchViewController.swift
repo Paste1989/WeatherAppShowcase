@@ -29,15 +29,6 @@ class SearchViewController: UIViewController {
         self.searchView.locations = viewModel.persistanceService.getLocations()
     }
     
-    private func setupNavigationBar() {
-        DispatchQueue.main.async {  
-            let backButton = UIBarButtonItem()
-            backButton.title = ""
-            backButton.image = UIImage(named: "back")
-            backButton.tintColor = .black
-            self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-        }
-    }
     
     private func addCallbacks() {
         searchView.onSearchButtonTapped = { [weak self] name in

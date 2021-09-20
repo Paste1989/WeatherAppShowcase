@@ -55,7 +55,9 @@ class HomeViewController: UIViewController {
             self?.currentWeather = weather
         }
         dataService.onWeatherUpdateFailure = { [weak self] error in
-            print(error)
+            let alert = UIAlertController(title: "Error occurred", message: "\(error)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self?.present(alert, animated: true, completion: nil)
         }
         
         locationService.onCoordinatesFetch = { [weak self] lat, lon in
